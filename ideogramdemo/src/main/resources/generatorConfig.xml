@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+<!--    <classPathEntry location="mysql-connector-j-9.1.0.jar"/>-->
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 防止生成重复代码 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <!-- 注释配置 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/ideogram?useSSL=false"
+                userId="root"
+                password="root">
+        </jdbcConnection>
+
+        <!-- 实体类生成配置 -->
+        <javaModelGenerator
+                targetPackage="com.example.ideogram.dao.model"
+                targetProject="src/main/java">
+        </javaModelGenerator>
+
+        <!-- SQL映射文件配置 -->
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="src/main/resources">
+        </sqlMapGenerator>
+
+        <!-- DAO接口配置 -->
+        <javaClientGenerator
+                type="XMLMAPPER"
+                targetPackage="com.example.ideogram.dao.mapper"
+                targetProject="src/main/java">
+        </javaClientGenerator>
+
+        <!-- 指定要生成的表 -->
+        <table tableName="ideo_pic" domainObjectName="IdeoPic"/>
+    </context>
+</generatorConfiguration>
